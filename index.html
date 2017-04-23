@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<button id="btn1">打开新窗口</button>
+<button id="btn3">设置1</button>
+<button id="btn4">设置2</button>
+<button id="btn2">console结果</button>
+
+<script src="bom.js"></script>
+<script>
+    function bom() {
+        $.bom.openAtCenter(800,600,'close.html')
+
+    }
+    function sp1(){
+        $.bom.search('第一名','张三')
+    }
+    function sp2(){
+        $.bom.search('第二名','李四')
+    }
+
+    function re (){
+            let result = {}
+            let search = window.location.search
+            if(search[0]==='?'){
+                search = search.slice(1)
+            }
+            let searchArray = search.split('&')
+            for(var i=0;i<searchArray.length;i++){
+                let parts = searchArray[i].split('=')
+                result[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1] || '')
+            }
+
+             console.log(result)
+    }
+    btn1.addEventListener('click',bom)
+    btn2.addEventListener('click',re)
+    btn3.addEventListener('click',sp1)
+    btn4.addEventListener('click',sp2)
+</script>
+</body>
+</html>
